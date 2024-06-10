@@ -1,0 +1,65 @@
+<!--<div class="card mb-2">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3>{{ task.name }}</h3>
+        <div>
+            <button (click)="task.hide = !task.hide" class="btn btn-primary">
+                Show
+            </button>
+            <button (click)="deleteTask(task)" class="btn btn-danger">
+                Delete
+            </button>
+        </div>
+    </div>
+    <div class="card-body" [hidden]="task.hide">
+        <p>{{task.email}}</p>
+    </div>
+</div>-->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Perfil</th>
+            <th scope="col">Fecha de Registro</th>
+            <th scope="col">Imagen</th>
+            <th scope="col" colspan="2">
+              <button (click)="openModalAdd()" class="btn btn-success" mat-raised-button color="accent"
+                    style="width: 100%;" >
+                <i class="bi bi-person-fill-add"></i> Add
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks; let i = index">
+            <th class="align-middle" scope="row">{{ i + 1 }}</th>
+            <td class="align-middle">{{ task.name }}</td>
+            <td class="align-middle">{{ task.email }}</td>
+            <td class="align-middle">{{ task.password }}</td>
+            <td class="align-middle">{{ task.profile }}</td>
+            <td class="align-middle">{{ task.fechaRegistro }}</td>
+            <td>
+              <img [src]="task.image" width="30" height="30">
+            </td>
+            <td style=" text-align: center; width: 15%;">
+              <button class="btn btn-primary" (click)="openModalEdit(task)" mat-raised-button
+                      style="width: 100%; background-color: #0d6efd; color: white;">
+                <i class="bi bi-pencil-square"></i> Edit
+            </button>
+            </td>
+            <td style=" text-align: center; width: 15%;">
+              <button (click)="deleteTask(task)" class="btn btn-danger" style="width: 100%;">
+                <i class="bi bi-x-circle-fill"></i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

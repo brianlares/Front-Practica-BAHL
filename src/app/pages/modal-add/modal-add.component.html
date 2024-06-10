@@ -1,0 +1,84 @@
+<div mat-dialog-title class="dialog-title">
+  <div class="row">
+  <div class="col-md-10">
+    <h2>Add User</h2>
+  </div>
+  <div class="col-md-2">
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn" iconPositionEnd>close</mat-icon>
+    </button>
+  </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-container add-uder">
+          <form [formGroup]="addForm">
+            <p class="text-danger">{{ addError }}</p>
+            <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Email" required>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+              <div *ngIf="email.errors?.['required']">
+                El Email es requerido.
+              </div>
+              <div *ngIf="email.errors?.['email']">
+                El Email debe tener un formato válido.
+              </div>
+            </div>
+            <br />
+            <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1"
+              placeholder="Password" required/>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+              <div *ngIf="password.errors?.['required']">
+                El Password es requerido.
+              </div>
+            </div>
+            <br />
+            <input formControlName="name" type="text" class="form-control" id="exampleInputName1"
+                    placeholder="Name" required/>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+              <div *ngIf="name.errors?.['required']">
+                El Nombre es requerido.
+              </div>
+            </div>
+            <br />
+            <select class="form-select" aria-label="" formControlName="profile" required>
+              <option value="">Select</option>
+              <option value="admin">admin</option>
+              <option value="user">recepcionista</option>
+            </select>
+            <div *ngIf="profile.invalid && (profile.dirty || profile.touched)" class="text-danger">
+              <div *ngIf="profile.errors?.['required']">
+                El perfil es requerido.
+              </div>
+            </div>
+            <br />
+            <input type="file" class="form-control" required
+                    id="exampleInputImage1" placeholder="Image" (change)="onFileSelected($event)"/>
+            <div *ngIf="image.invalid && (image.dirty || image.touched)" class="text-danger">
+              <div *ngIf="image.errors?.['required']">
+                La imagen es requerida.
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col-md-4">
+                <button type="submit" mat-dialog-close class="btn btn-primary" (click)="addTask()"
+                        style="width: 100%;" [disabled]="!addForm.valid">
+                  <i class="bi bi-person-plus-fill"></i> Add
+                </button>
+              </div>
+              <div class="col-md-2"></div>
+              <div class="col-md-4">
+                <button type="submit" mat-dialog-close class="btn btn-danger" style="width: 100%;">
+                  Close
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
